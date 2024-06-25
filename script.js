@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let audio = songbar.nextElementSibling
         currentSong = audio
         const otherAudios = document.querySelectorAll('.song-audio')
+        console.log(otherAudios.length)
         otherAudios.forEach(a => {
             if (a !== audio) {
                 a.pause()
