@@ -27,44 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const artistSongs = {
         Arijit: [
-            "Tum Hi Ho", "Channa Mereya", "Ae Dil Hai Mushkil", "Gerua", "Kabira",
-            "Phir Bhi Tumko Chaahunga", "Soch Na Sake", "Raabta", "Muskurane", "Khairiyat"
+            "Tum Hi Ho", "Channa Mereya", "Ae Dil Hai Mushkil", "Gerua", "Kabira"
         ],
         Sonu: [
-            "Kal Ho Naa Ho", "Abhi Mujh Mein Kahin", "Papa Meri Jaan", "Suraj Hua Maddham", "Main Agar Kahoon",
-            "Tanhayee", "Do Pal", "Sandese Aate Hai", "Jaane Nahin Denge", "Yeh Dil Deewana"
+            "Kal Ho Naa Ho", "Abhi Mujh Mein Kahin", "Papa Meri Jaan","Main Agar Kahoon","Sandese Aate Hai"
         ],
         AR: [
-            "Dil Se Re", "Luka Chuppi", "Jai Ho", "Tu Hai", "Ye Haseen Vadiyan",
-            "Vande Mataram", "Tu Hi Re", "Khwaja Mere Khwaja", "Kun Faaya Kun", "Jashn E Bahaaraa"
+            "Jai Ho","Ye Haseen Vadiyan","Vande Mataram","Khwaja Mere Khwaja", "Kun Faaya Kun"
         ],
         jubin: [
-            "Tum Hi Aana", "Humnava Mere", "Phir Mulaaqat", "Kaabil Hoon", "Dil Ka Dariya",
-            "Gazab Ka Hai Din", "Mere Ghar Ram Aaye Hain", "Bawara Mann", "Tujhe Kitna Chahein Aur", "Agar Tum Saath Ho Maahi Ve"
+            "Mere Ghar Ram Aaye Hain", "Tum Hi Aana", "Humnava Mere", "Kaabil Hoon", "Dil Ka Dariya"
         ],
         KK: [
-            "Tujhe Sochta Hoon", "Zara Sa", "Tu Hi Meri Shab Hai", "Aankhon Mein Teri", "Labon Ko",
-            "Pal", "Yaaron", "Aashayein", "Kaise Bataaoon", "O Meri Jaan"
+            "Tujhe Sochta Hoon", "Zara Sa", "Tu Hi Meri Shab Hai", "Aankhon Mein Teri", "Labon Ko"
         ],
         Shreya: [
-            "Bairi Piya", "Teri Ore", "Agar Tum Mil Jao", "Barso Re", "Deewani Mastani",
-            "Sun Raha Hai Na Tu", "Teri Meri", "Pal Pal Har Pal", "Manwa Laage", "Saans"
+            "Teri Ore", "Agar Tum Mil Jao", "Sun Raha Hai Na Tu", "Manwa Laage", "Saans"
         ],
         Sunidhi: [
-            "Ishq Sufiyana", "Kamli", "Crazy Kiya Re", "Dhoom Machale", "Desi Girl",
-            "Sheila Ki Jawani", "Beedi", "Aaja Nachle", "Mehboob Mere", "Bhumro"
+            "Ishq Sufiyana", "Kamli", "Crazy Kiya Re", "Dhoom Machale", "Desi Girl"
         ],
         Lata: [
-            "Lag Ja Gale", "Aayega Aanewala", "Ajeeb Dastan Hai Yeh", "Pyar Kiya To Darna Kya", "Tere Bina Jiya Jaye Na",
-            "Tere Liye", "Dil To Pagal Hai", "Aap Ki Nazron Ne Samjha", "Kabhi Kabhi Mere Dil Mein", "Rangeela Re"
+            "Lag Ja Gale", "Aayega Aanewala", "Ajeeb Dastan Hai Yeh", "Pyar Kiya To Darna Kya", "Tere Bina Jiya Jaye Na"
         ],
         Neha: [
-            "Dilbar", "Yaad Piya Ki Aane Lagi", "O Saki Saki", "Garmi", "Aankh Marey",
-            "Mile Ho Tum", "Cheez Badi", "Kar Gayi Chull", "Badri Ki Dulhania", "La La La"
+            "Dilbar", "Yaad Piya Ki Aane Lagi", "O Saki Saki", "Mile Ho Tum", "Aankh Marey"
         ],
         Shilpa: [
-            "Khuda Jaane", "Malang", "Manmarziyan", "Ghungroo", "Meherbaan",
-            "Kalank", "Bulleya", "Ishq Shava", "Jazba", "Tose Naina"
+            "Khuda Jaane", "Ghungroo", "Kalank", "Bulleya", "Tose Naina"
         ]
     }
 
