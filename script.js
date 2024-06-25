@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div id="song-naam" class="song-naam">
                     <div id="naam" class="naam" style="font-weight: bolder">${song}</div>
                 </div>
-                <audio class="song-audio" src="audio-track/${song}.mp3"></audio>
+                <audio class="song-audio" src="audio-track/${song}.mp3" preload="auto"></audio>
                 </div>`
             ).join('')
         })
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         myProgressBar.addEventListener('change', () => {
-            audio.currentTime = Number(myProgressBar.value) * audio.duration / 100
+            audio.currentTime = parseInt((myProgressBar.value) * audio.duration / 100)
         })
     }
 })
