@@ -1,0 +1,231 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const artistCards = document.querySelectorAll('.artist-card')
+    const songContainer = document.getElementById('song-container')
+    const artistPhoto = document.getElementById('artist-photo')
+    const artistName = document.getElementById('artist-name')
+    const songList = document.getElementById('songs')
+    const songName = document.getElementById('song-name')
+    const backButton = document.getElementById('back-button')
+    const PlayButton = document.getElementById('fa-circle-play')
+    const PauseButton = document.getElementById('fa-circle-pause')
+    const NextSong = document.getElementById('fa-forward')
+    const PrevSong = document.getElementById('fa-backward')
+    const myProgressBar = document.getElementById('ProgressBar');
+    let songIndex = -1
+
+    let quotes = [
+        'You must be the change you wish to see in the world.',
+        'Spread love everywhere you go.',
+        'The only thing we have to fear is fear itself.',
+        'Darkness cannot drive out darkness: only light can do that.',
+        'Do one thing every day that scares you.'
+    ]
+
+    const val = Math.floor(Math.random() * 5)
+
+    document.getElementById('Heading').innerHTML = quotes[val]
+
+    const artistSongs = {
+        Arijit: [
+            "Tum Hi Ho", "Channa Mereya", "Ae Dil Hai Mushkil", "Gerua", "Kabira",
+            "Phir Bhi Tumko Chaahunga", "Soch Na Sake", "Raabta", "Muskurane", "Khairiyat"
+        ],
+        Sonu: [
+            "Kal Ho Naa Ho", "Abhi Mujh Mein Kahin", "Papa Meri Jaan", "Suraj Hua Maddham", "Main Agar Kahoon",
+            "Tanhayee", "Do Pal", "Sandese Aate Hai", "Jaane Nahin Denge", "Yeh Dil Deewana"
+        ],
+        AR: [
+            "Dil Se Re", "Luka Chuppi", "Jai Ho", "Tu Hai", "Ye Haseen Vadiyan",
+            "Vande Mataram", "Tu Hi Re", "Khwaja Mere Khwaja", "Kun Faaya Kun", "Jashn E Bahaaraa"
+        ],
+        jubin: [
+            "Tum Hi Aana", "Humnava Mere", "Phir Mulaaqat", "Kaabil Hoon", "Dil Ka Dariya",
+            "Gazab Ka Hai Din", "Mere Ghar Ram Aaye Hain", "Bawara Mann", "Tujhe Kitna Chahein Aur", "Agar Tum Saath Ho Maahi Ve"
+        ],
+        KK: [
+            "Tujhe Sochta Hoon", "Zara Sa", "Tu Hi Meri Shab Hai", "Aankhon Mein Teri", "Labon Ko",
+            "Pal", "Yaaron", "Aashayein", "Kaise Bataaoon", "O Meri Jaan"
+        ],
+        Shreya: [
+            "Bairi Piya", "Teri Ore", "Agar Tum Mil Jao", "Barso Re", "Deewani Mastani",
+            "Sun Raha Hai Na Tu", "Teri Meri", "Pal Pal Har Pal", "Manwa Laage", "Saans"
+        ],
+        Sunidhi: [
+            "Ishq Sufiyana", "Kamli", "Crazy Kiya Re", "Dhoom Machale", "Desi Girl",
+            "Sheila Ki Jawani", "Beedi", "Aaja Nachle", "Mehboob Mere", "Bhumro"
+        ],
+        Lata: [
+            "Lag Ja Gale", "Aayega Aanewala", "Ajeeb Dastan Hai Yeh", "Pyar Kiya To Darna Kya", "Tere Bina Jiya Jaye Na",
+            "Tere Liye", "Dil To Pagal Hai", "Aap Ki Nazron Ne Samjha", "Kabhi Kabhi Mere Dil Mein", "Rangeela Re"
+        ],
+        Neha: [
+            "Dilbar", "Yaad Piya Ki Aane Lagi", "O Saki Saki", "Garmi", "Aankh Marey",
+            "Mile Ho Tum", "Cheez Badi", "Kar Gayi Chull", "Badri Ki Dulhania", "La La La"
+        ],
+        Shilpa: [
+            "Khuda Jaane", "Malang", "Manmarziyan", "Ghungroo", "Meherbaan",
+            "Kalank", "Bulleya", "Ishq Shava", "Jazba", "Tose Naina"
+        ]
+    }
+
+    artistCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const artist = card.dataset.artist
+            const song = artistSongs[artist]
+            document.querySelector('.container').style.display = 'none'
+            document.querySelector('.main-bottom').style.display = 'none'
+            document.querySelector('.bottom-nav').style.display = 'block'
+            songContainer.style.display = 'flex'
+            artistPhoto.src = card.querySelector('img').src
+            artistName.textContent = card.querySelector('h3').textContent
+            songList.innerHTML = song.map(song => `
+                <div>
+                <div id="song-naam" class="song-naam">
+                    <div id="naam" class="naam" style="font-weight: bolder">${song}</div>
+                </div>
+                <audio class="song-audio" src="audio-track/${song}.mp3"></audio>
+                </div>`
+            ).join('')
+        })
+    })
+
+    let currentSong = null
+
+    backButton.addEventListener('click', () => {
+        document.querySelector('.container').style.display = 'block'
+        document.querySelector('.main-bottom').style.display = 'flex'
+        document.querySelector('.bottom-nav').style.display = 'none'
+        songContainer.style.display = 'none'
+        const currentSongs = document.querySelectorAll('.song-audio')
+        currentSongs.forEach(audio => {
+            audio.pause()
+            audio.currentTime = 0
+        })
+        songName.textContent = "Song-name"
+        currentSong = null
+        PauseButton.style.display = 'none'
+        PlayButton.style.display = 'block'
+    })
+
+    songList.addEventListener('click', (event) => {
+        const songbar = event.target.closest('.song-naam')
+
+        if (!songbar) return
+        const otherbar = document.querySelectorAll('.song-naam')
+        let i = 0
+        otherbar.forEach(a => {
+            if (a !== songbar) {
+                a.style.backgroundColor = "white"
+            } else {
+                songIndex = i
+            }
+            i++
+        })
+        songbar.style.backgroundColor = "cyan"
+        let audio = songbar.nextElementSibling
+        currentSong = audio
+        const otherAudios = document.querySelectorAll('.song-audio')
+        otherAudios.forEach(a => {
+            if (a !== audio) {
+                a.pause()
+            }
+        })
+        if (audio.paused) {
+            songName.textContent = songbar.textContent
+            audio.play()
+            PlayButton.style.display = 'none'
+            PauseButton.style.display = 'block'
+        } else {
+            audio.pause()
+            PlayButton.style.display = 'block'
+            PauseButton.style.display = 'none'
+        }
+        addProgressBarListeners(currentSong)
+    })
+
+    PlayButton.addEventListener('click', () => {
+        if (songName.textContent == 'Song-name' || currentSong == null) {
+            alert('Select a Song')
+            return
+        }
+        currentSong.play()
+        PlayButton.style.display = 'none'
+        PauseButton.style.display = 'block'
+        addProgressBarListeners(currentSong)
+    })
+
+    PauseButton.addEventListener('click', () => {
+        if (songName.textContent == 'Song-name' || currentSong == null) {
+            alert('Play a Song first')
+            return
+        }
+        currentSong.pause()
+        PauseButton.style.display = 'none'
+        PlayButton.style.display = 'block'
+    })
+
+    NextSong.addEventListener('click', () => {
+        const currentSongs = document.querySelectorAll('.song-audio')
+        if (songIndex === -1) return
+        if (currentSong) {
+            currentSong.pause()
+        }
+        songIndex = (songIndex + 1) % currentSongs.length
+        currentSong = currentSongs[songIndex]
+
+        if (currentSong) {
+            currentSong.currentTime = 0
+            currentSong.play()
+            songName.textContent = currentSong.previousElementSibling.textContent
+            PlayButton.style.display = 'none'
+            PauseButton.style.display = 'block'
+            const songBars = document.querySelectorAll('.song-naam')
+            songBars.forEach((bar, index) => {
+                if (index === songIndex) {
+                    bar.style.backgroundColor = 'cyan'
+                } else {
+                    bar.style.backgroundColor = 'white'
+                }
+            })
+            addProgressBarListeners(currentSong)
+        }
+    })
+
+    PrevSong.addEventListener('click', () => {
+        const currentSongs = document.querySelectorAll('.song-audio')
+        if (songIndex === -1) return
+        if (currentSong) {
+            currentSong.pause()
+        }
+        songIndex = (songIndex - 1 + currentSongs.length) % currentSongs.length
+        currentSong = currentSongs[songIndex]
+
+        if (currentSong) {
+            currentSong.currentTime = 0
+            currentSong.play()
+            songName.textContent = currentSong.previousElementSibling.textContent
+            PlayButton.style.display = 'none'
+            PauseButton.style.display = 'block'
+            const songBars = document.querySelectorAll('.song-naam')
+            songBars.forEach((bar, index) => {
+                if (index === songIndex) {
+                    bar.style.backgroundColor = 'cyan'
+                } else {
+                    bar.style.backgroundColor = 'white'
+                }
+            })
+            addProgressBarListeners(currentSong)
+        }
+    })
+
+    function addProgressBarListeners(audio) {
+        audio.addEventListener('timeupdate', () => {
+            const progress = parseInt((audio.currentTime / audio.duration) * 100)
+            myProgressBar.value = progress
+        })
+
+        myProgressBar.addEventListener('change', () => {
+            audio.currentTime = Number(myProgressBar.value) * audio.duration / 100
+        })
+    }
+})
